@@ -10,47 +10,45 @@ import java.util.List;
 
 public class AirField {
 	
-	public static void main(String[] args) {
-		AirField af = new AirField();
-		String file = "jets.txt";
-		List<Jet> hanger = af.readFromFile(file);
-		
-		System.out.println(hanger);
-		System.out.println(hanger.get(0));
-		System.out.println(hanger.get(1));
-		System.out.println(hanger.get(2));
-		System.out.println(hanger.get(3));
-		System.out.println(hanger.get(0).getSpeed());
+	public List<Jet> getHanger() {
+		return hanger;
 	}
 
+	protected void setHanger(List<Jet> hanger) {
+		this.hanger = hanger;
+	}
 
-	
-	private List<Jet> readFromFile(String jetFile) {
-		
-		List<Jet> hanger = new ArrayList<>();
+	List<Jet> hanger = new ArrayList<>();
+	public void readFromFile() {
+
 		try {
 			FileReader fr = new FileReader("jets.txt");
 			BufferedReader br = new BufferedReader(fr);
 			String jets;
 
 			while ((jets = br.readLine()) != null) {
-				 String[] jetInfo = jets.split(", ");
-				 String model = jetInfo[0];
-				 System.out.println(model);
-				 long price = Long.parseLong(jetInfo[1]);
-			     double speed = Double.parseDouble(jetInfo[2]);
-			     int range = Integer.parseInt(jetInfo[3]);
-			     Jet j = new Jet(model, price, speed, range);
+				String[] jetInfo = jets.split(", ");
+				Jet j = null;
+
+				String type = jetInfo[0];
+				String model = jetInfo[1];
+				long price = Long.parseLong(jetInfo[2]);
+				double speed = Double.parseDouble(jetInfo[3]);
+				int range = Integer.parseInt(jetInfo[4]);
+				if (type.equalsIgnoreCase("passenger")) {
+					j = new Passenger(type, model, price, speed, range);
+				} else if (type.equalsIgnoreCase("fighter")) {
+					j = new FighterJet(type, model, price, speed, range);
+				} else if (type.equalsIgnoreCase("cargo")) {
+					j = new CargoPlane(type, model, price, speed, range);
+				}
 				hanger.add(j);
+				System.out.println(j);
 			}
+
 			br.close();
-		} catch (FileNotFoundException e) {
-			System.err.println("Invalid filename: " + e.getMessage());
-			return hanger;
 		} catch (IOException e) {
 			System.err.println("Problem while reading names.txt" + ": " + e.getMessage());
-			return hanger;
 		}
-		return hanger;
 	}
 }

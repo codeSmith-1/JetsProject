@@ -2,18 +2,21 @@ package com.skilldistillery.jets.entities;
 
 public class Jet {
 	
+
 	protected String model;
 	protected long price;
 	protected double speed;
 	protected int range;
+	protected String type;
 
 	public Jet(){}
 	
-	public Jet(String model, long price, double speed, int range) {
+	public Jet(String type, String model, long price, double speed, int range) {
 		this.model = model;
 		this.price = price;
 		this.speed = speed;
 		this.range = range;
+		this.type = type;
 	}
 
 	@Override
@@ -22,8 +25,8 @@ public class Jet {
 	}
 
 
-	protected void fly() {
-		System.out.println(model + ", price: "+ price + " speed: " + speed + ", range: " + range + "flight time: "+flyTime());
+	public void fly() {
+		System.out.println(type +", "+ model + ", price: "+ price + " speed: " + speed + ", range: " + range + "flight time: "+flyTime() + "hours");
 		
 	}
 
@@ -31,6 +34,13 @@ public class Jet {
 		return speed * 0.001303;
 	}
 
+	protected String getType() {
+		return type;
+	}
+	
+	protected void setType(String type) {
+		this.type = type;
+	}
 	protected String getModel() {
 		return model;
 	}
@@ -47,7 +57,7 @@ public class Jet {
 		this.price = price;
 	}
 
-	protected double getSpeed() {
+	public double getSpeed() {
 		return speed;
 	}
 
@@ -55,7 +65,7 @@ public class Jet {
 		this.speed = speed;
 	}
 
-	protected int getRange() {
+	public int getRange() {
 		return range;
 	}
 

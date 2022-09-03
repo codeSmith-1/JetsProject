@@ -6,7 +6,8 @@ public class Passenger extends Jet implements ChemTrails {
 		
 	}
 	
-	public Passenger(String model, long price, double speed, int range) {
+	public Passenger(String type, String model, long price, double speed, int range) {
+		setType(type);
 		setModel(model);
 		setPrice(price);
 		setSpeed(speed);
@@ -15,10 +16,14 @@ public class Passenger extends Jet implements ChemTrails {
 
 	@Override
 	public void chemTrails() {
-		System.out.println("deploying hypnosis gas and changing the weather patterns");
+		System.out.println("deploying chem trails to change the weather");
 		
 	}
 	
+	@Override
+	public String toString() {
+		return type +" model= " + model + ", price= " + price + ", speed= " + speed + ", range= " + range;
 	
+	}
 
 }
