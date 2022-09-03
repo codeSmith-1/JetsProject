@@ -18,7 +18,7 @@ public class Jet {
 
 	@Override
 	public String toString() {
-		return model + ", price=" + price + ", speed=" + speed + ", range=" + range + "]";
+		return model + ", price= " + price + ", speed= " + speed + ", range= " + range;
 	}
 
 
