@@ -1,10 +1,9 @@
 package com.skilldistillery.jets.entities;
 
+import java.util.List;
+
 public class AirField {
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
-
+// has a jets... talks to application
+	private List<Jet> airField;
+// four or five methods
 }
