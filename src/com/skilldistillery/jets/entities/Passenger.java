@@ -1,29 +1,34 @@
 package com.skilldistillery.jets.entities;
 
-public class Passenger extends Jet implements ChemTrails {
+public class Passenger extends Jet  {
+	
+	
+	
+
+	public void setModel(String model) {
+		this.model = model;
+	}
 
 	public Passenger() {
 		
 	}
 	
 	public Passenger(String type, String model, long price, double speed, int range) {
-		setType(type);
+		setType(type.toUpperCase());
 		setModel(model);
 		setPrice(price);
 		setSpeed(speed);
 		setRange(range);
 	}
 
-	@Override
-	public void chemTrails() {
-		System.out.println("deploying chem trails to change the weather");
 		
-	}
+//	@Override
+//	public String toString() {
+//		return type + " model: " + model + ", price: " + price + ", speed: " + speed + ", range: " + range;
+//	
+//	}
 	
-	@Override
-	public String toString() {
-		return type +" model= " + model + ", price= " + price + ", speed= " + speed + ", range= " + range;
 	
-	}
+	
 
 }

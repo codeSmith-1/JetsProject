@@ -1,15 +1,23 @@
 package com.skilldistillery.jets.entities;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+
 public class Jet {
 	
 
+	protected String type;
 	protected String model;
 	protected long price;
 	protected double speed;
 	protected int range;
-	protected String type;
+	
 
-	public Jet(){}
+	
+	public Jet(){
+		
+	}
 	
 	public Jet(String type, String model, long price, double speed, int range) {
 		this.model = model;
@@ -19,41 +27,58 @@ public class Jet {
 		this.type = type;
 	}
 
+	
+	
+	
 	@Override
 	public String toString() {
-		return model + ", price= " + price + ", speed= " + speed + ", range= " + range;
+		return type +", "+ "model: " + model + ", price: "+ price + ", speed (MPH/Mach): " + speed +"/"+mach()+ ", range: " + range + " miles";
 	}
 
+	public double flyTime() {
+		double value = range / speed;
+		
+		BigDecimal bd = BigDecimal.valueOf(value);
+		bd = bd.setScale(2, RoundingMode.HALF_UP);
+		
+		return bd.doubleValue();
+	}
 
 	public void fly() {
-		System.out.println(type +", "+ model + ", price: "+ price + " speed: " + speed + ", range: " + range + "flight time: "+flyTime() + "hours");
+		System.out.println(type +", "+ "model: " + model + ", price: "+ price + "  speed (MPH/Mach): " + speed +"/"+mach()+ " range: " + range + " flight time: "+flyTime() + " hours");
 		
 	}
 
-	protected double mach() {
-		return speed * 0.001303;
+	public double mach() {
+		double value = speed * 0.00130332;
+		
+		BigDecimal bd = BigDecimal.valueOf(value);
+		bd = bd.setScale(2, RoundingMode.HALF_UP);
+		
+		return bd.doubleValue();
+		
 	}
 
-	protected String getType() {
+	public String getType() {
 		return type;
 	}
 	
-	protected void setType(String type) {
+	public void setType(String type) {
 		this.type = type;
 	}
-	protected String getModel() {
+	public String getModel() {
 		return model;
 	}
 
-	protected void setModel(String model) {
+	public void setModel(String model) {
 		this.model = model;
 	}
 
-	protected long getPrice() {
+	public long getPrice() {
 		return price;
 	}
 
-	protected void setPrice(long price) {
+	public void setPrice(long price) {
 		this.price = price;
 	}
 
@@ -61,7 +86,7 @@ public class Jet {
 		return speed;
 	}
 
-	protected void setSpeed(double speed) {
+	public void setSpeed(double speed) {
 		this.speed = speed;
 	}
 
@@ -69,13 +94,10 @@ public class Jet {
 		return range;
 	}
 
-	protected void setRange(int range) {
+	public void setRange(int range) {
 		this.range = range;
 	}
 	
-	protected double flyTime() {
-		return range / speed;
-	}
 
 
 

@@ -1,26 +1,20 @@
 package com.skilldistillery.jets.entities;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class AirField {
-	
+
 	public List<Jet> getHanger() {
 		return hanger;
 	}
 
-	protected void setHanger(List<Jet> hanger) {
-		this.hanger = hanger;
-	}
-
 	List<Jet> hanger = new ArrayList<>();
-	public void readFromFile() {
 
+	public void readFromFile() {
 		try {
 			FileReader fr = new FileReader("jets.txt");
 			BufferedReader br = new BufferedReader(fr);
@@ -43,7 +37,6 @@ public class AirField {
 					j = new CargoPlane(type, model, price, speed, range);
 				}
 				hanger.add(j);
-				System.out.println(j);
 			}
 
 			br.close();

@@ -7,22 +7,19 @@ public class FighterJet extends Jet implements DropFlowers{
 		}
 	
 	public FighterJet(String type, String model, long price, double speed, int range) {
-		setType(type);
+		setType(type.toUpperCase());
 		setModel(model);
 		setPrice(price);
 		setSpeed(speed);
 		setRange(range);
 		
 	}
-	@Override
-	public String toString() {
-		return type +" model= " + model + ", price= " + price + ", speed= " + speed + ", range= " + range;
 	
-	}
+	
 
 	@Override
 	public void flowers() {
-		System.out.println("making love not war");
+		System.out.println(this.model + " flowers away!");
 		
 	}
 
