@@ -2,11 +2,9 @@ package com.skilldistillery.jets.entities;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.text.DecimalFormat;
 
 public class Jet {
 	
-
 	protected String type;
 	protected String model;
 	protected long price;
@@ -14,7 +12,6 @@ public class Jet {
 	protected int range;
 		
 	public Jet(){
-		
 	}
 	
 	public Jet(String type, String model, long price, double speed, int range) {
@@ -27,7 +24,7 @@ public class Jet {
 	
 	@Override
 	public String toString() {
-		return type +", "+ "model: " + model + ", price: "+ price + ", speed (MPH/Mach): " + speed +"/"+mach()+ ", range: " + range + " miles";
+		return type +", "+ "model: " + model + ", price: "+ price + ", speed (MPH/Mach): " + speed +"/"+mach() + ", range: " + range + " miles";
 	}
 
 
@@ -92,8 +89,4 @@ public class Jet {
 	public void setRange(int range) {
 		this.range = range;
 	}
-	
-
-
-
 }

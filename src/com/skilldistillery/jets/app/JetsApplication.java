@@ -92,12 +92,10 @@ public class JetsApplication {
 
 				break;
 			case 7:
-
 				fleet.add(jetApp.typeOfJet());
 				break;
 
 			case 8:
-
 				int count = 1;
 				for (Jet jet : fleet) {
 					System.out.println(count + " " + jet);
@@ -108,7 +106,7 @@ public class JetsApplication {
 				while (!done) {
 					System.out.println("Enter a number to delete the corresponding plane");
 					int userInput = kb.nextInt();
-					if (userInput > 0 && userInput <= fleet.size()-1) {
+					if (userInput > 0 && userInput <= fleet.size()) {
 						userInput--;
 						System.out.println("you removed " + fleet.get(userInput));
 						fleet.remove(userInput);
