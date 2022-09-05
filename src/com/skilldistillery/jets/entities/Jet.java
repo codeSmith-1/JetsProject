@@ -12,9 +12,7 @@ public class Jet {
 	protected long price;
 	protected double speed;
 	protected int range;
-	
-
-	
+		
 	public Jet(){
 		
 	}
@@ -24,15 +22,18 @@ public class Jet {
 		this.price = price;
 		this.speed = speed;
 		this.range = range;
-		this.type = type;
+		this.type = type.toUpperCase();
 	}
-
-	
-	
 	
 	@Override
 	public String toString() {
 		return type +", "+ "model: " + model + ", price: "+ price + ", speed (MPH/Mach): " + speed +"/"+mach()+ ", range: " + range + " miles";
+	}
+
+
+	public void fly() {
+		System.out.println(type +", "+ "model: " + model + ", price: "+ price + "  speed (MPH/Mach): " + speed +"/"+mach()+ " range: " + range + " flight time: "+flyTime() + " hours");
+		
 	}
 
 	public double flyTime() {
@@ -43,12 +44,6 @@ public class Jet {
 		
 		return bd.doubleValue();
 	}
-
-	public void fly() {
-		System.out.println(type +", "+ "model: " + model + ", price: "+ price + "  speed (MPH/Mach): " + speed +"/"+mach()+ " range: " + range + " flight time: "+flyTime() + " hours");
-		
-	}
-
 	public double mach() {
 		double value = speed * 0.00130332;
 		

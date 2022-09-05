@@ -12,14 +12,18 @@ public class Passenger extends Jet  {
 	public Passenger() {
 		
 	}
-	
+
 	public Passenger(String type, String model, long price, double speed, int range) {
-		setType(type.toUpperCase());
-		setModel(model);
-		setPrice(price);
-		setSpeed(speed);
-		setRange(range);
+		super(type, model, price, speed, range);
 	}
+	
+//	public Passenger(String type, String model, long price, double speed, int range) {
+//		setType(type.toUpperCase());
+//		setModel(model);
+//		setPrice(price);
+//		setSpeed(speed);
+//		setRange(range);
+//	}
 
 		
 //	@Override

@@ -50,9 +50,8 @@ public class JetsApplication {
 				for (Jet jet : fleet) {
 					jet.fly();
 				}
-
 				break;
-			case 3: {
+			case 3:
 				Jet fastJet = null;
 				double max = Integer.MIN_VALUE;
 				for (Jet jet : fleet) {
@@ -62,7 +61,7 @@ public class JetsApplication {
 					}
 				}
 				System.out.println(fastJet);
-			}
+
 				break;
 			case 4:
 				Jet longRange = null;
@@ -93,28 +92,8 @@ public class JetsApplication {
 
 				break;
 			case 7:
-				Jet userJet = null;
-				String jetTypeString = jetApp.typeOfJet();
-				System.out.println("What model is the jet?");
-				String jetModel = kb.next();
-				System.out.println("How much is th jet $ ?");
-				long jetCost = kb.nextLong();
-				System.out.println("How fast is the jet?");
-				double jetSpeed = kb.nextDouble();
-				System.out.println("What is the jet's range");
-				int jetRange = kb.nextInt();
-				if (jetTypeString.equalsIgnoreCase("passenger")) {
-					userJet = new Passenger(jetTypeString, jetModel, jetCost, jetSpeed, jetRange);
-				}
-				if (jetTypeString.equalsIgnoreCase("Fighter")) {
-					userJet = new FighterJet(jetTypeString, jetModel, jetCost, jetSpeed, jetRange);
-				}
-				if (jetTypeString.equalsIgnoreCase("cargo")) {
-					userJet = new CargoPlane(jetTypeString, jetModel, jetCost, jetSpeed, jetRange);
-				}
-				fleet.add(userJet);
-				System.out.println("You added: " + userJet);
 
+				fleet.add(jetApp.typeOfJet());
 				break;
 
 			case 8:
@@ -125,15 +104,15 @@ public class JetsApplication {
 					count++;
 				}
 				System.out.println();
-//				jetApp.removeByNumber();
 				boolean done = false;
 				while (!done) {
 					System.out.println("Enter a number to delete the corresponding plane");
 					int userInput = kb.nextInt();
-					if (userInput <= fleet.size() && userInput > 0) {
-						userInput -= 1;
-						fleet.remove(userInput);
+					if (userInput > 0 && userInput <= fleet.size()-1) {
+						userInput--;
 						System.out.println("you removed " + fleet.get(userInput));
+						fleet.remove(userInput);
+
 						done = true;
 					} else {
 						System.err.println("Please choose a number that corresponds with a plane.");
@@ -160,17 +139,98 @@ public class JetsApplication {
 		System.out.println("4- View jet with longest range");
 		System.out.println("5- Make love not war");
 		System.out.println("6- Change the weather");
-		System.out.println("7- Add a jet to Fleet");
-		System.out.println("8- Remove a jet from Fleet");
+		System.out.println("7- Add a jet to fleet");
+		System.out.println("8- Remove a jet from the fleet");
 		System.out.println("9- Quit");
 	}
-	
-	public String typeOfJet() {
-		System.out.println("What type of jet do you want to create?");
-		System.out.println("Cargo");
-		System.out.println("Passenger");
-		System.out.println("Fighter");
-		String userJet = kb.next().toUpperCase();
+
+	public Jet typeOfJet() {
+		Jet userJet = null;
+
+// Let user choose which jet type to create
+		String jetTypeInput = "";
+		boolean typeInput = true;
+		do {
+			// Get input
+			System.out.println("What type of jet do you want to create?");
+			System.out.println("Cargo");
+			System.out.println("Passenger");
+			System.out.println("Fighter");
+
+			jetTypeInput = kb.next().toUpperCase();
+			if (jetTypeInput.equals("PASSENGER") || jetTypeInput.equals("CARGO") || jetTypeInput.equals("FIGHTER")) {
+				typeInput = false;
+			} else {
+				typeInput = true;
+				System.err.println("Enter a valid jet type.");
+			}
+
+		} while (typeInput);
+// capture model
+		System.out.println("Enter the model: ");
+		String jetModel = kb.next();
+
+// capture price and throw exception for invalid data type
+		boolean running = true;
+		long jetCost = 0;
+		do {
+			try {
+				// Get input
+				System.out.println("Enter the price: ");
+				jetCost = kb.nextLong();
+				running = false;
+			} catch (InputMismatchException e) {
+				System.err.println("Enter a valid number.");
+				running = true;
+			}
+			kb.nextLine();
+		} while (running);
+
+// capture speed and throw exception for invalid data type
+		boolean nextInput = true;
+		double jetSpeed = 0;
+		do {
+			try {
+				// Get input
+				System.out.println("Enter the speed: ");
+				jetSpeed = kb.nextDouble();
+				nextInput = false;
+			} catch (InputMismatchException e) {
+				System.err.println("Enter a valid number.");
+				running = true;
+			}
+			kb.nextLine();
+		} while (nextInput);
+
+// capture range and throw exception for invalid data type
+
+		boolean getJetRange = true;
+		int jetRange = 0;
+		do {
+			try {
+				// Get input
+				System.out.println("Enter the range: ");
+				jetRange = kb.nextInt();
+				getJetRange = false;
+			} catch (InputMismatchException e) {
+				System.err.println("Enter a valid number.");
+				running = true;
+			}
+			kb.nextLine();
+		} while (getJetRange);
+
+// create appropriate jet type with user input
+		if (jetTypeInput.equalsIgnoreCase("passenger")) {
+			userJet = new Passenger(jetTypeInput, jetModel, jetCost, jetSpeed, jetRange);
+		}
+		if (jetTypeInput.equalsIgnoreCase("Fighter")) {
+			userJet = new FighterJet(jetTypeInput, jetModel, jetCost, jetSpeed, jetRange);
+		}
+		if (jetTypeInput.equalsIgnoreCase("cargo")) {
+			userJet = new CargoPlane(jetTypeInput, jetModel, jetCost, jetSpeed, jetRange);
+		}
+
+		System.out.println("You added: " + userJet);
 		return userJet;
 	}
 

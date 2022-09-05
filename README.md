@@ -1,7 +1,12 @@
 # JetsProject
+The Jets Application reads a .txt file to create a list of jets. The application lets users see detailed information about jets, including their flight range to empty and speed in both mph/mach. Users can also interact with unique interfaces based on the jet type. Fly all jets includes  Finally, users can create their own jet based on jet type and remove a jet from the list. 
 
-# Description
+## Technologies Used
+The AirField uses a fileReader and buffReader to import the .txt file, using the parse DATATYPE.parse function to import data line by line. The data is then staged to be added into the list "hanger". (This import occurs on runtime when an AirField object "af" calls the method "readFromFile" within the launch configuration of the Jets Application.
+A Jet superclass houses all fields shared by jets and defines the fly() method which prints the total flight time possible based on speed and range. These calculations employ the BigDecimal class to format flight time (and mach speed) for readability. 
+Two subclasses, CargoPlane and FighterJet implement interfaces to access unique behavior. The JetsApplication uses while loops, for each loops, and switch statements to take in, produce, and act on user input. To find the fastest and longest range jets, the program iterates through the list of jets and compares value, making use of the Integer.MIN_VALUE to make the first comparison. 
 
-# Technologies Used
-
-# Lessons Learned
+## Lessons Learned
+I cemented my understanding of the readFromFile process and data parse methods, as well as, how to use the AirField object to call a method in the Jets Application's launch configuration. I discovered bugs with the scanner.nextLine() reading the user's "enter" and using it to execute the program again. 
+This skipped any input in the subsequent menu run and triggered the default error. I fixed the bug by narrowing the issue down to the scanner, as the bug was only occuring in cases utilizing the nextLine(). Changing to next() to account for data specific input fixed the bug. 
+Finally, I learned how to create a list variable and assign it a call to method. For example: creating a list variable "fleet" and assigning it the hanger's value ("null" before runtime) using the AirField object. 
